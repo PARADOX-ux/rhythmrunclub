@@ -56,7 +56,7 @@ export default function RegistrationModal({ isOpen, onClose }) {
 
                     {showTicket ? (
                         // TICKET VIEW
-                        <div className="text-center py-4 animate-fade-in-up">
+                        <div className="text-center py-4">
                             <div className="inline-block bg-white text-black p-6 rounded-3xl shadow-2xl w-full relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-full h-2 bg-orange-500"></div>
                                 <h3 className="text-2xl font-black mb-1 tracking-tighter">RHYTHM RUN CLUB</h3>
@@ -108,7 +108,7 @@ export default function RegistrationModal({ isOpen, onClose }) {
                         </div>
                     ) : showDetails ? (
                         // EVENT DETAILS VIEW
-                        <div className="animate-fade-in">
+                        <div>
                             <div className="flex justify-between items-start mb-8">
                                 <div>
                                     <h2 className="text-3xl md:text-5xl font-black text-orange-500 mb-2 tracking-tighter">NEW YEAR RUN</h2>
