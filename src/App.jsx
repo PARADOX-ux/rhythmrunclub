@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import CustomCursor from './components/CustomCursor';
@@ -22,6 +23,7 @@ export default function App() {
                     <Route path="/activity" element={<Activity />} />
                     <Route path="/login" element={<Login />} />
                 </Routes>
+                <Analytics />
             </div>
         </Router>
     );
