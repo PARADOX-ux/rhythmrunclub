@@ -12,6 +12,13 @@ export default function HomeSections() {
         location: "Fetching location..."
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [hasTicket, setHasTicket] = useState(false);
+
+    useEffect(() => {
+        // Check for ticket on mount
+        const ticket = localStorage.getItem('rhythm_run_ticket');
+        if (ticket) setHasTicket(true);
+    }, [isModalOpen]); // Re-check when modal closes/opens
 
     useEffect(() => {
         const fetchData = async () => {
@@ -52,7 +59,7 @@ export default function HomeSections() {
                         onClick={() => setIsModalOpen(true)}
                         className="bg-white text-black px-8 py-4 md:px-10 md:py-5 rounded-full font-black text-lg md:text-xl hover:scale-110 hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-xl whitespace-nowrap"
                     >
-                        {localStorage.getItem('rhythm_run_ticket') ? "VIEW TICKET 🎫" : "REGISTER NOW ⚡"}
+                        {hasTicket ? "VIEW TICKET 🎫" : "REGISTER NOW ⚡"}
                     </button>
                 </div>
 
