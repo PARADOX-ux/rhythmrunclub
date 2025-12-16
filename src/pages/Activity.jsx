@@ -84,7 +84,7 @@ export default function Activity() {
                 <div className="space-y-8">
                     {/* Header */}
                     <div className="space-y-2">
-                        <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50">
+                        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50">
                             YOUR<br />ACTIVITY
                         </h1>
                         <p className="text-xl text-gray-400 font-light max-w-md">
