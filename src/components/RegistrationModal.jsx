@@ -13,6 +13,13 @@ export default function RegistrationModal({ isOpen, onClose }) {
 
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8MebLbTbGtosyPwA7WZyq33eOMDIYXSxCBWIKRD_Go4YnJ-kqtV8UkpuawZ8DZgw9/exec";
 
+    useEffect(() => {
+        const savedTicket = localStorage.getItem('rhythm_run_ticket');
+        if (savedTicket) {
+            setTicket(JSON.parse(savedTicket));
+        }
+    }, []);
+
     const handleRegister = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -39,6 +46,7 @@ export default function RegistrationModal({ isOpen, onClose }) {
             });
 
             // Assuming success because Google Sheets rarely fails if URL is correct
+            localStorage.setItem('rhythm_run_ticket', JSON.stringify(newTicket));
             setTicket(newTicket);
             setLoading(false);
 
