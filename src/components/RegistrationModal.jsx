@@ -85,8 +85,12 @@ export default function RegistrationModal({ isOpen, onClose }) {
                                         <p className="text-[10px] text-gray-500">Ticket ID</p>
                                         <p className="font-mono font-bold text-sm">#{ticket.id}</p>
                                     </div>
-                                    <div className="w-12 h-12 bg-black text-white flex items-center justify-center font-bold rounded-lg text-xs">
-                                        QR
+                                    <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg overflow-hidden">
+                                        <img
+                                            src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticket.id}`}
+                                            alt="QR"
+                                            className="w-full h-full object-cover"
+                                        />
                                     </div>
                                 </div>
                             </div>
