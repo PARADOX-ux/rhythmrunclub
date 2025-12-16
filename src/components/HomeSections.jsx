@@ -52,7 +52,7 @@ export default function HomeSections() {
                         onClick={() => setIsModalOpen(true)}
                         className="bg-white text-black px-8 py-4 md:px-10 md:py-5 rounded-full font-black text-lg md:text-xl hover:scale-110 hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-xl whitespace-nowrap"
                     >
-                        REGISTER NOW ⚡
+                        {localStorage.getItem('rhythm_run_ticket') ? "VIEW TICKET 🎫" : "REGISTER NOW ⚡"}
                     </button>
                 </div>
 

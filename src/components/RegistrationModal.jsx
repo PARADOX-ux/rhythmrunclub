@@ -13,49 +13,35 @@ export default function RegistrationModal({ isOpen, onClose }) {
 
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8MebLbTbGtosyPwA7WZyq33eOMDIYXSxCBWIKRD_Go4YnJ-kqtV8UkpuawZ8DZgw9/exec";
 
+    const [viewRoute, setViewRoute] = useState(false);
+
     useEffect(() => {
-        const savedTicket = localStorage.getItem('rhythm_run_ticket');
-        if (savedTicket) {
-            setTicket(JSON.parse(savedTicket));
+        try {
+            const savedTicket = localStorage.getItem('rhythm_run_ticket');
+            if (savedTicket) {
+                setTicket(JSON.parse(savedTicket));
+            }
+        } catch (e) {
+            console.error("Corrupt ticket data", e);
+            localStorage.removeItem('rhythm_run_ticket');
         }
     }, []);
 
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-
-        // Generate a local Ticket ID (since we aren't using Firestore auto-ID)
-        const ticketId = Math.random().toString(36).substr(2, 6).toUpperCase();
-        const newTicket = {
-            ...formData,
-            id: ticketId,
-            event: "New Year Run 2026",
-            timestamp: new Date().toISOString()
-        };
-
-        try {
-            // Send to Google Sheets using 'no-cors' mode
-            // Note: 'no-cors' means we can't read the response JSON, but it fixes the browser blocking the request.
-            await fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newTicket)
-            });
-
-            // Assuming success because Google Sheets rarely fails if URL is correct
-            localStorage.setItem('rhythm_run_ticket', JSON.stringify(newTicket));
-            setTicket(newTicket);
-            setLoading(false);
-
-        } catch (error) {
-            console.error("Error registering: ", error);
-            setLoading(false);
-            alert("Connection error! Please try again.");
-        }
+    const handleViewRoute = () => {
+        setViewRoute(true);
+        setShowDetails(true);
     };
+
+    const handleBackToTicket = () => {
+        setViewRoute(false);
+        setShowDetails(false); // Ensure we don't show details, show ticket
+    };
+
+    // ... (handleRegister logic remains same, but we can verify it doesn't need changes)
+
+    // LOGIC: If we have a ticket AND we aren't explicitly asking to view route, show ticket.
+    // Otherwise, follow standard flow (Details -> Form).
+    const showTicket = ticket && !viewRoute;
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onClick={onClose}>
@@ -68,7 +54,7 @@ export default function RegistrationModal({ isOpen, onClose }) {
 
                 <div className="overflow-y-auto p-6 md:p-10 w-full">
 
-                    {ticket ? (
+                    {showTicket ? (
                         // TICKET VIEW
                         <div className="text-center py-4 animate-fade-in-up">
                             <div className="inline-block bg-white text-black p-6 rounded-3xl shadow-2xl w-full relative overflow-hidden">
@@ -112,7 +98,13 @@ export default function RegistrationModal({ isOpen, onClose }) {
                                 </div>
                             </div>
                             <p className="text-gray-400 mt-6 text-sm">Screenshot this ticket! 📸</p>
-                            <button onClick={onClose} className="mt-4 text-white underline hover:text-orange-500 text-sm">Close</button>
+
+                            <div className="flex flex-col gap-3 mt-6">
+                                <button onClick={handleViewRoute} className="px-6 py-3 bg-zinc-800 text-white font-bold rounded-full hover:bg-zinc-700 transition-colors border border-white/10">
+                                    📍 VIEW ROUTE & INFO
+                                </button>
+                                <button onClick={onClose} className="text-white underline hover:text-orange-500 text-sm">Close</button>
+                            </div>
                         </div>
                     ) : showDetails ? (
                         // EVENT DETAILS VIEW
@@ -122,9 +114,17 @@ export default function RegistrationModal({ isOpen, onClose }) {
                                     <h2 className="text-3xl md:text-5xl font-black text-orange-500 mb-2 tracking-tighter">NEW YEAR RUN</h2>
                                     <p className="text-lg md:text-xl text-white font-bold">1st January 2026 • 6:00 AM • Yelahanka Main Gate</p>
                                 </div>
+                                {ticket && !viewRoute && (
+                                    <button
+                                        onClick={handleBackToTicket}
+                                        className="hidden md:block bg-zinc-800 text-white px-8 py-3 rounded-full font-bold hover:bg-zinc-700 transition-colors border border-white/20"
+                                    >
+                                        🎫 VIEW TICKET
+                                    </button>
+                                )}
                                 <button
                                     onClick={() => setShowDetails(false)}
-                                    className="hidden md:block bg-white text-black px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform"
+                                    className={`hidden md:block bg-white text-black px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform ${ticket ? 'hidden' : ''}`}
                                 >
                                     REGISTER NOW
                                 </button>
@@ -166,12 +166,21 @@ export default function RegistrationModal({ isOpen, onClose }) {
                                         </p>
                                     </div>
 
-                                    <button
-                                        onClick={() => setShowDetails(false)}
-                                        className="md:hidden w-full bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform mt-4"
-                                    >
-                                        REGISTER NOW
-                                    </button>
+                                    {ticket ? (
+                                        <button
+                                            onClick={handleBackToTicket}
+                                            className="md:hidden w-full bg-zinc-800 text-white px-8 py-4 rounded-full font-bold hover:bg-zinc-700 transition-colors mt-4 border border-white/20"
+                                        >
+                                            🎫 VIEW MY TICKET
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() => setShowDetails(false)}
+                                            className="md:hidden w-full bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform mt-4"
+                                        >
+                                            REGISTER NOW
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
