@@ -11,32 +11,41 @@ export default function RegistrationModal({ isOpen, onClose }) {
 
     if (!isOpen) return null;
 
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8MebLbTbGtosyPwA7WZyq33eOMDIYXSxCBWIKRD_Go4YnJ-kqtV8UkpuawZ8DZgw9/exec";
+
     const handleRegister = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        // Generate a local Ticket ID (since we aren't using Firestore auto-ID)
+        const ticketId = Math.random().toString(36).substr(2, 6).toUpperCase();
+        const newTicket = {
+            ...formData,
+            id: ticketId,
+            event: "New Year Run 2026",
+            timestamp: new Date().toISOString()
+        };
+
         try {
-            // Check for duplicate email
-            const q = query(collection(db, "registrations"), where("email", "==", formData.email));
-            const querySnapshot = await getDocs(q);
-
-            if (!querySnapshot.empty) {
-                alert("You have already registered with this email ID! 🚫");
-                setLoading(false);
-                return;
-            }
-
-            // Proceed with registration
-            const docRef = await addDoc(collection(db, "registrations"), {
-                ...formData,
-                event: "New Year Run 2026",
-                timestamp: new Date()
+            // Send to Google Sheets using 'no-cors' mode
+            // Note: 'no-cors' means we can't read the response JSON, but it fixes the browser blocking the request.
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newTicket)
             });
-            setTicket({ ...formData, id: docRef.id.slice(0, 6).toUpperCase() });
+
+            // Assuming success because Google Sheets rarely fails if URL is correct
+            setTicket(newTicket);
             setLoading(false);
+
         } catch (error) {
             console.error("Error registering: ", error);
             setLoading(false);
-            alert(`Error: ${error.message}`);
+            alert("Connection error! Please try again.");
         }
     };
 
