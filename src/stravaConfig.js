@@ -3,7 +3,7 @@ export const STRAVA_CLIENT_ID = "185686";
 export const STRAVA_CLIENT_SECRET = "2815b298aea14fa13172cb111951ab0cd7ea34e5";
 
 // This MUST match exactly what you set in Strava website settings
-export const REDIRECT_URI = "http://localhost:5173/activity";
+export const REDIRECT_URI = `${window.location.origin}/activity`;
 
 export const getStravaAuthUrl = () => {
     return `https://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&scope=activity:read_all&approval_prompt=force`;
