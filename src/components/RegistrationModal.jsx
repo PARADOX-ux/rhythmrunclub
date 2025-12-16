@@ -111,8 +111,8 @@ export default function RegistrationModal({ isOpen, onClose }) {
                         <div className="animate-fade-in">
                             <div className="flex justify-between items-start mb-8">
                                 <div>
-                                    <h2 className="text-4xl md:text-5xl font-black text-orange-500 mb-2 tracking-tighter">NEW YEAR RUN</h2>
-                                    <p className="text-xl text-white font-bold">1st January 2026 • 6:00 AM • Yelahanka Main Gate</p>
+                                    <h2 className="text-3xl md:text-5xl font-black text-orange-500 mb-2 tracking-tighter">NEW YEAR RUN</h2>
+                                    <p className="text-lg md:text-xl text-white font-bold">1st January 2026 • 6:00 AM • Yelahanka Main Gate</p>
                                 </div>
                                 <button
                                     onClick={() => setShowDetails(false)}

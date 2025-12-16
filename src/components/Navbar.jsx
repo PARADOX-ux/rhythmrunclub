@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <nav className="absolute top-0 w-full p-6 flex justify-between items-center z-50 text-white mix-blend-difference">
       {/* Left: Brand */}
-      <Link to="/" className="text-xl font-bold tracking-widest uppercase">
+      <Link to="/" className="text-xl font-bold tracking-widest uppercase z-50">
         <Shuffle
           text="RHYTHM RUN CLUB"
           shuffleDirection="right"
@@ -32,7 +32,30 @@ export default function Navbar() {
         />
       </Link>
 
-      {/* Center: Links */}
+      {/* Mobile Menu Toggle */}
+      <button
+        className="md:hidden z-50 text-white mix-blend-difference"
+        onClick={() => document.getElementById('mobile-menu').classList.toggle('hidden')}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+        </svg>
+      </button>
+
+      {/* Mobile Menu Overlay */}
+      <div id="mobile-menu" className="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center space-y-8 text-2xl font-bold">
+        <Link to="/" onClick={() => document.getElementById('mobile-menu').classList.add('hidden')}>HOME</Link>
+        <Link to="/about" onClick={() => document.getElementById('mobile-menu').classList.add('hidden')}>ABOUT</Link>
+        <Link to="/events" onClick={() => document.getElementById('mobile-menu').classList.add('hidden')}>EVENTS</Link>
+        <Link to="/activity" onClick={() => document.getElementById('mobile-menu').classList.add('hidden')}>ACTIVITY</Link>
+        {user ? (
+          <button onClick={() => { logout(); document.getElementById('mobile-menu').classList.add('hidden'); }} className="text-red-500">LOGOUT</button>
+        ) : (
+          <Link to="/login" onClick={() => document.getElementById('mobile-menu').classList.add('hidden')} className="text-orange-500">LOGIN</Link>
+        )}
+      </div>
+
+      {/* Desktop Menu */}
       <div className="hidden md:flex gap-8 text-sm font-medium tracking-wider">
         <Link to="/" className="hover:text-gray-300 transition-colors">
           <Shuffle
@@ -92,10 +115,10 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {/* Right: Login/User */}
+      {/* Right: Login/User (Desktop) */}
       {user ? (
-        <div className="flex items-center gap-4">
-          <span className="hidden md:block text-sm font-bold">{user.displayName}</span>
+        <div className="hidden md:flex items-center gap-4">
+          <span className="text-sm font-bold">{user.displayName}</span>
           <button
             onClick={logout}
             className="border border-white/40 px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all"
@@ -111,10 +134,11 @@ export default function Navbar() {
           )}
         </div>
       ) : (
-        <Link to="/login" className="border border-white/40 px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all">
+        <Link to="/login" className="hidden md:block border border-white/40 px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all">
           LOGIN
         </Link>
       )}
     </nav>
+  );
   );
 }

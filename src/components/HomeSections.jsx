@@ -36,7 +36,7 @@ export default function HomeSections() {
 
 
             {/* Section 1: Featured Event (New Year Run) */}
-            <div className="w-full max-w-4xl border border-orange-500/30 p-10 rounded-3xl backdrop-blur-md bg-zinc-900/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_80px_rgba(249,115,22,0.2)] transition-all relative overflow-hidden group">
+            <div className="w-full max-w-4xl border border-orange-500/30 p-6 md:p-10 rounded-3xl backdrop-blur-md bg-zinc-900/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_80px_rgba(249,115,22,0.2)] transition-all relative overflow-hidden group">
                 <div className="absolute top-0 right-0 bg-orange-500 text-black font-black text-xs px-4 py-2 rounded-bl-xl z-20">
                     OPEN FOR REGISTRATION
                 </div>
@@ -44,13 +44,13 @@ export default function HomeSections() {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
                     <div className="text-center md:text-left">
                         <h3 className="text-orange-500 font-bold tracking-[0.2em] mb-2 text-sm">UPCOMING EVENT</h3>
-                        <h2 className="text-5xl md:text-7xl font-black mb-2 italic tracking-tighter">NEW YEAR<br />RUN 2026</h2>
+                        <h2 className="text-4xl md:text-7xl font-black mb-2 italic tracking-tighter">NEW YEAR<br />RUN 2026</h2>
                         <p className="text-xl text-gray-300 font-light">1st JAN • 6:00 AM • YELAHANKA</p>
                     </div>
 
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="bg-white text-black px-10 py-5 rounded-full font-black text-xl hover:scale-110 hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-xl whitespace-nowrap"
+                        className="bg-white text-black px-8 py-4 md:px-10 md:py-5 rounded-full font-black text-lg md:text-xl hover:scale-110 hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-xl whitespace-nowrap"
                     >
                         REGISTER NOW ⚡
                     </button>
@@ -62,7 +62,7 @@ export default function HomeSections() {
 
             {/* Section 2: The Manifesto */}
             <div className="w-full max-w-4xl text-center space-y-8">
-                <h2 className="text-6xl md:text-8xl font-black tracking-tighter leading-none mix-blend-difference">
+                <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mix-blend-difference">
                     NOT JUST<br />A RUN CLUB.
                 </h2>
                 <p className="text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
