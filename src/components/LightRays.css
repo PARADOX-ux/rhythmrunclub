@@ -1,0 +1,14 @@
+.light-rays-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* Changed from relative to absolute for background usage */
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+    /* Low Z-Index so text sits on top */
+    overflow: hidden;
+    mix-blend-mode: screen;
+    /* Blends nicely with black background */
+}
