@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Allow anyone to register (Create only)
+    match /registrations/{registration} {
+      allow create: if true;
+      allow read: if true; // Optional: restrict this if you want privacy
+    }
+
+    // Allow reading events (for the Home Page "Next Run" display)
+    match /events/{event} {
+      allow read: if true;
+      allow write: if false; // Only admin can change events
+    }
+
+    // Default deny for everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
