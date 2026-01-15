@@ -11,13 +11,13 @@ import Events from './pages/Events';
 import Login from './pages/Login';
 import SEO from './components/SEO';
 // import ProtectedRoute from './components/ProtectedRoute';
-import ParticlesOverlay from './components/ParticlesOverlay';
+
 // import Preloader from './components/Preloader';
 
 export default function App() {
     return (
         <HelmetProvider>
-            <ParticlesOverlay />
+
             <SEO />
             <Router>
                 <div className="bg-black min-h-screen text-white selection:bg-orange-500 selection:text-white">
