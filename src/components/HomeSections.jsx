@@ -9,6 +9,7 @@ import RouteMap from './RouteMap';
 
 import MarqueeGallery from './MarqueeGallery';
 import RunnerSpotlight from './RunnerSpotlight';
+import Leaderboard from './Leaderboard';
 import MerchDrop from './MerchDrop';
 import SectionConnector from './SectionConnector';
 
