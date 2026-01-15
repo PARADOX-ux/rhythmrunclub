@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import Link from 'next/link'; // Not strictly needed unless used, but keeping imports
+// import Link from 'next/link';
 import NewJoinerFAQ from './NewJoinerFAQ';
 import StravaStats from './StravaStats';
 import RouteMap from './RouteMap';
