@@ -11,6 +11,7 @@ import MarqueeGallery from './MarqueeGallery';
 import RunnerSpotlight from './RunnerSpotlight';
 import Leaderboard from './Leaderboard';
 import MerchDrop from './MerchDrop';
+import SectionConnector from './SectionConnector';
 
 // gsap.registerPlugin(ScrollTrigger);
 
@@ -39,8 +40,8 @@ export default function HomeSections() {
     }, []);
 
     return (
-        <div ref={containerRef} className="bg-black text-white px-6 py-20 flex flex-col gap-32 items-center relative z-10">
-            <div className="anim-section w-full max-w-4xl text-center space-y-8">
+        <div ref={containerRef} className="bg-black text-white px-6 py-20 flex flex-col gap-0 items-center relative z-10">
+            <div className="anim-section w-full max-w-4xl text-center space-y-8 mb-20">
                 <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mix-blend-difference">
                     NOT JUST<br />A RUN CLUB.
                 </h2>
@@ -53,29 +54,45 @@ export default function HomeSections() {
                 </div>
             </div>
 
+            <SectionConnector />
+
             {/* Section 2: FAQ (New Joiner) */}
             <NewJoinerFAQ />
+
+            <SectionConnector />
 
             {/* Section 3: The Roster */}
             <RunnerSpotlight />
 
+            <SectionConnector />
+
             {/* Section 4: Community Proof */}
             <StravaStats />
+
+            <SectionConnector />
 
             {/* Section 5: The Route */}
             <RouteMap />
 
+            <SectionConnector />
+
             {/* Section 6: Leaderboard */}
             <Leaderboard />
+
+            <SectionConnector />
 
             {/* Section 4: Merch Drop */}
             <MerchDrop />
 
+            <SectionConnector />
+
             {/* Section 5: Captured Moments Gallery (Polaroid) */}
             <MarqueeGallery />
 
+            <SectionConnector />
+
             {/* Section 6: Fundraiser (Bar Only - B&W) */}
-            <div className="w-full max-w-2xl text-center">
+            <div className="w-full max-w-2xl text-center py-20">
                 <div className="w-full h-8 bg-gray-900 rounded-full overflow-hidden border border-white/20 relative">
                     <div className="bg-white h-full w-[0%] absolute top-0 left-0"></div>
                     <p className="absolute w-full text-center text-sm font-bold text-white top-1.5 z-10 tracking-wider">
