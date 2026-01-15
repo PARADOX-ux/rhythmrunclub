@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -25,7 +24,7 @@ export const HeroParallax = ({
     const translateY = useSpring(useTransform(scrollYProgress, [0, 0.2], [-700, 500]), springConfig);
 
     return (
-        (<div
+        <div
             ref={ref}
             className="h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]">
             <Header />
@@ -53,13 +52,13 @@ export const HeroParallax = ({
                     ))}
                 </motion.div>
             </motion.div>
-        </div>)
+        </div>
     );
 };
 
 export const Header = () => {
     return (
-        (<div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
+        <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
             <h1 className="text-2xl md:text-7xl font-black italic tracking-tighter text-white">
                 WE RUN <br />
                 <span className="text-orange-500">THE NIGHT.</span>
@@ -73,7 +72,7 @@ export const Header = () => {
                 We run to escape, to connect, and to feel alive.
                 <span className="text-orange-500 font-bold ml-1">No Pace Requirements. No Ego. Just Vibes.</span>
             </p>
-        </div>)
+        </div>
     );
 };
 
@@ -82,7 +81,7 @@ export const ProductCard = ({
     translate
 }) => {
     return (
-        (<motion.div
+        <motion.div
             style={{
                 x: translate,
             }}
@@ -108,6 +107,6 @@ export const ProductCard = ({
             <div className="absolute top-4 right-4 opacity-0 group-hover/product:opacity-100 bg-orange-500 text-black text-xs font-bold px-2 py-1 rounded transition-opacity duration-300">
                 EXPLORE
             </div>
-        </motion.div>)
+        </motion.div>
     );
 };
