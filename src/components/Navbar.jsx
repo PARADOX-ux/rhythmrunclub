@@ -75,17 +75,7 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          {!user && (
-            <a
-              href="https://chat.whatsapp.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-white/20 text-white text-xs font-black tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all"
-              onClick={() => document.getElementById('mobile-menu').classList.add('hidden')}
-            >
-              JOIN WHATSAPP
-            </a>
-          )}
+
           {user && (
             <button onClick={() => { logout(); document.getElementById('mobile-menu').classList.add('hidden'); }} className="text-red-500">LOGOUT</button>
           )}
@@ -138,36 +128,28 @@ export default function Navbar() {
             </Link>
           )}
 
-          {/* CTA Button */}
-          <a
-            href="https://chat.whatsapp.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-white/20 text-white text-xs font-black tracking-[0.2em] px-6 py-3 rounded-full hover:bg-white hover:text-black transition-all ml-4"
-          >
-            JOIN WHATSAPP
-          </a>
-        </div>
 
-        {/* Right: User (Desktop) - Logout if logged in */}
-        {user && (
-          <div className="hidden md:flex items-center gap-4 ml-4">
-            <span className="text-sm font-bold">{user.displayName}</span>
-            <button
-              onClick={logout}
-              className="border border-white/40 px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all"
-            >
-              LOGOUT
-            </button>
-            {user.photoURL && (
-              <img
-                src={user.photoURL}
-                alt="Profile"
-                className="w-8 h-8 rounded-full border border-white/50"
-              />
-            )}
-          </div>
-        )}
+
+          {/* Right: User (Desktop) - Logout if logged in */}
+          {user && (
+            <div className="hidden md:flex items-center gap-4 ml-4">
+              <span className="text-sm font-bold">{user.displayName}</span>
+              <button
+                onClick={logout}
+                className="border border-white/40 px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all"
+              >
+                LOGOUT
+              </button>
+              {user.photoURL && (
+                <img
+                  src={user.photoURL}
+                  alt="Profile"
+                  className="w-8 h-8 rounded-full border border-white/50"
+                />
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );
