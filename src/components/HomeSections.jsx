@@ -11,7 +11,6 @@ import MarqueeGallery from './MarqueeGallery';
 import RunnerSpotlight from './RunnerSpotlight';
 import MerchDrop from './MerchDrop';
 import SectionConnector from './SectionConnector';
-import { HeroParallaxSection } from './HeroParallaxSection';
 
 // gsap.registerPlugin(ScrollTrigger);
 
@@ -41,8 +40,18 @@ export default function HomeSections() {
 
     return (
         <div ref={containerRef} className="bg-black text-white px-6 py-20 flex flex-col gap-0 items-center relative z-10">
-            {/* Section 1: Hero Parallax (Replaces Text Hero) */}
-            <HeroParallaxSection />
+            <div className="anim-section w-full max-w-4xl text-center space-y-8 mb-20">
+                <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mix-blend-difference">
+                    NOT JUST<br />A RUN CLUB.
+                </h2>
+                <div className="relative group cursor-default">
+                    <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed transition-colors duration-500 hover:text-white">
+                        We are a collective of dreamers, doers, and night owls.
+                        We run to escape, to connect, and to feel alive.
+                        No pace requirements. No ego. Just vibes.
+                    </p>
+                </div>
+            </div>
 
             <SectionConnector />
 
