@@ -5,7 +5,8 @@ import { db } from "../firebase";
 
 export default function MerchDrop() {
     const [email, setEmail] = useState("");
-    const [status, setStatus] = useState("idle"); // idle, input, loading, success, error
+    const [status, setStatus] = useState("idle");
+    const [errorMessage, setErrorMessage] = useState("ERROR. TRY AGAIN.");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,15 +16,16 @@ export default function MerchDrop() {
         try {
             await addDoc(collection(db, "merch_waitlist"), {
                 email: email,
-                timestamp: new Date() // Server timestamp would be better but Date is fine for now
+                timestamp: new Date()
             });
             setStatus("success");
             setEmail("");
         } catch (error) {
             console.error("Error adding email: ", error);
+            setErrorMessage(error.message || "ERROR. TRY AGAIN.");
             setStatus("error");
-            // Reset to input after 2 seconds on error
-            setTimeout(() => setStatus("input"), 2000);
+            // Reset to input after 4 seconds on error to allow reading
+            setTimeout(() => setStatus("input"), 4000);
         }
     };
 
@@ -141,9 +143,9 @@ export default function MerchDrop() {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    className="text-red-500 font-bold"
+                                    className="text-red-500 font-bold text-xs"
                                 >
-                                    ERROR. TRY AGAIN.
+                                    {errorMessage}
                                 </motion.div>
                             )}
                         </AnimatePresence>
