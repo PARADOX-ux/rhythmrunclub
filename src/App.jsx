@@ -1,41 +1,40 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async'; // SEO Support
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import CustomCursor from './components/CustomCursor';
-import HomeSections from './components/HomeSections';
-import Activity from './pages/Activity';
+import Footer from './components/Footer';
+import SEO from './components/SEO';
+import ParticlesOverlay from './components/ParticlesOverlay';
+import Home from './pages/Home';
 import About from './pages/About';
 import Events from './pages/Events';
+import Activity from './pages/Activity';
 import Login from './pages/Login';
-import SEO from './components/SEO';
-// import ProtectedRoute from './components/ProtectedRoute';
 
-// import Preloader from './components/Preloader';
+function AnimatedRoutes() {
+    const location = useLocation();
 
-export default function App() {
+    return (
+        <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/activity" element={<Activity />} />
+                <Route path="/join" element={<Login />} />
+            </Routes>
+        </AnimatePresence>
+    );
+}
+
+function App() {
     return (
         <HelmetProvider>
-
-            <SEO />
             <Router>
-                <div className="bg-black min-h-screen text-white selection:bg-orange-500 selection:text-white">
-                    {/* {isLoading && <Preloader onComplete={() => setIsLoading(false)} />} */}
-
-                    <div className="">
-                        <CustomCursor />
-                        <Navbar />
-                        <Routes>
-                            <Route path="/" element={<><Hero /><HomeSections /></>} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/events" element={<Events />} />
-                            <Route path="/activity" element={<Activity />} />
-                            <Route path="/login" element={<Login />} />
-                        </Routes>
-                    </div>
-                </div>
-            </Router>
-        </HelmetProvider>
+            </div>
+        </div>
+            </Router >
+        </HelmetProvider >
     );
 }
