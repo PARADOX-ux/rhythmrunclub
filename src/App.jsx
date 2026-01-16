@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import SEO from './components/SEO';
 import ParticlesOverlay from './components/ParticlesOverlay';
 import Home from './pages/Home';
@@ -37,7 +37,7 @@ function App() {
                     <ParticlesOverlay />
                     <Navbar />
                     <AnimatedRoutes />
-                    <Footer />
+                    {/* <Footer /> */}
                 </div>
             </Router>
         </HelmetProvider>
