@@ -34,7 +34,7 @@ function App() {
             <Router>
                 <div className="min-h-screen bg-black text-white selection:bg-orange-500 selection:text-white">
                     <SEO />
-                    <ParticlesOverlay />
+                    {/* <ParticlesOverlay /> */}
                     <Navbar />
                     <AnimatedRoutes />
                     {/* <Footer /> */}
