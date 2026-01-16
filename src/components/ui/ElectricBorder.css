@@ -23,6 +23,8 @@
     position: relative;
     border-radius: inherit;
     z-index: 1;
+    width: 100%;
+    height: 100%;
 }
 
 .eb-layers {
@@ -31,6 +33,8 @@
     border-radius: inherit;
     pointer-events: none;
     z-index: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .eb-glow-1,
