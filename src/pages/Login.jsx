@@ -21,7 +21,7 @@ export default function Login() {
             {/* PIXEL SNOW BACKGROUND */}
             <div className="absolute inset-0 z-0">
                 <PixelSnow
-                    color="#ffffff"
+                    color="#F97316"
                     flakeSize={0.01}
                     minFlakeSize={1.25}
                     pixelResolution={200}
