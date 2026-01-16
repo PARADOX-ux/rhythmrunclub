@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, signInWithGoogle } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import ParticlesBackground from '../components/ParticlesBackground';
+import PixelSnow from '../components/ui/PixelSnow';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -18,8 +18,19 @@ export default function Login() {
 
     return (
         <div className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center">
-            {/* PARTICLES BACKGROUND */}
-            <ParticlesBackground />
+            {/* PIXEL SNOW BACKGROUND */}
+            <div className="absolute inset-0 z-0">
+                <PixelSnow
+                    color="#ffffff"
+                    flakeSize={0.01}
+                    minFlakeSize={1.25}
+                    pixelResolution={200}
+                    speed={1.25}
+                    density={0.3}
+                    direction={125}
+                    brightness={1}
+                />
+            </div>
 
             <div className="relative z-10 form-container">
                 <div className="uiverse-form">
