@@ -18,7 +18,7 @@ export default function GeminiScrollSection() {
 
     return (
         <div
-            className="h-[400vh] bg-black w-full border-t border-b border-white/10 relative pt-40 overflow-clip"
+            className="h-[150vh] bg-black w-full border-t border-b border-white/10 relative pt-10 overflow-clip"
             ref={ref}>
             <GoogleGeminiEffect
                 pathLengths={[
