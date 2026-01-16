@@ -1,7 +1,32 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function MerchDrop() {
+    const [email, setEmail] = useState("");
+    const [status, setStatus] = useState("idle"); // idle, input, loading, success, error
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!email) return;
+
+        setStatus("loading");
+        try {
+            await addDoc(collection(db, "merch_waitlist"), {
+                email: email,
+                timestamp: new Date() // Server timestamp would be better but Date is fine for now
+            });
+            setStatus("success");
+            setEmail("");
+        } catch (error) {
+            console.error("Error adding email: ", error);
+            setStatus("error");
+            // Reset to input after 2 seconds on error
+            setTimeout(() => setStatus("input"), 2000);
+        }
+    };
+
     return (
         <div className="w-full max-w-6xl py-20 px-4">
             <div className="relative w-full h-[500px] md:h-[600px] bg-zinc-900 rounded-3xl overflow-hidden group border border-white/5">
@@ -45,9 +70,84 @@ export default function MerchDrop() {
                         // Member Exclusive.
                     </p>
 
-                    <button className="px-8 py-4 bg-white text-black font-black italic tracking-wider rounded-full hover:bg-orange-500 hover:text-white transition-all duration-300 hover:scale-110 shadow-xl">
-                        GET NOTIFIED
-                    </button>
+                    <div className="h-16 flex items-center justify-center">
+                        <AnimatePresence mode="wait">
+                            {status === 'idle' && (
+                                <motion.button
+                                    key="idle-btn"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    onClick={() => setStatus("input")}
+                                    className="px-8 py-4 bg-white text-black font-black italic tracking-wider rounded-full hover:bg-orange-500 hover:text-white transition-all duration-300 hover:scale-110 shadow-xl"
+                                >
+                                    GET NOTIFIED
+                                </motion.button>
+                            )}
+
+                            {status === 'input' && (
+                                <motion.form
+                                    key="input-form"
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    onSubmit={handleSubmit}
+                                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md p-1.5 rounded-full border border-white/20"
+                                >
+                                    <input
+                                        type="email"
+                                        placeholder="ENTER EMAIL"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="bg-transparent text-white font-mono text-sm px-4 focus:outline-none w-48 placeholder:text-gray-500"
+                                        autoFocus
+                                        required
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="bg-white text-black h-10 w-10 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors"
+                                    >
+                                        →
+                                    </button>
+                                </motion.form>
+                            )}
+
+                            {status === 'loading' && (
+                                <motion.div
+                                    key="loading"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="text-white font-mono animate-pulse"
+                                >
+                                    PROCESSING...
+                                </motion.div>
+                            )}
+
+                            {status === 'success' && (
+                                <motion.div
+                                    key="success"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="px-8 py-3 bg-green-500 text-black font-bold rounded-full shadow-[0_0_20px_rgba(34,197,94,0.6)]"
+                                >
+                                    YOU'RE ON THE LIST
+                                </motion.div>
+                            )}
+
+                            {status === 'error' && (
+                                <motion.div
+                                    key="error"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="text-red-500 font-bold"
+                                >
+                                    ERROR. TRY AGAIN.
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
                 </div>
 
                 {/* 4. Grid & Noise Overlay */}
