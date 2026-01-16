@@ -15,8 +15,13 @@ export default function MerchDrop() {
         setStatus("loading");
         try {
             // Ensure user is authenticated (anonymously if needed)
-            if (!auth.currentUser) {
-                await allowAnonymousLogin();
+            let user = auth.currentUser;
+            if (!user) {
+                user = await allowAnonymousLogin();
+            }
+
+            if (!user) {
+                throw new Error("Enable Anonymous Auth in Firebase Console");
             }
 
             await addDoc(collection(db, "merch_waitlist"), {
@@ -107,7 +112,6 @@ export default function MerchDrop() {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="bg-transparent text-white font-mono text-sm px-4 focus:outline-none w-48 placeholder:text-gray-500"
-                                        autoFocus
                                         required
                                     />
                                     <button
