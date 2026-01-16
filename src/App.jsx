@@ -23,7 +23,7 @@ function AnimatedRoutes() {
                 <Route path="/about" element={<About />} />
                 <Route path="/events" element={<Events />} />
                 <Route path="/activity" element={<Activity />} />
-                <Route path="/join" element={<Login />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
         </AnimatePresence>
     );
