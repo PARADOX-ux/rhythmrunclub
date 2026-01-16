@@ -11,6 +11,7 @@ import About from './pages/About';
 import Events from './pages/Events';
 import Activity from './pages/Activity';
 import Login from './pages/Login';
+import SmoothCursor from './components/ui/SmoothCursor';
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -33,6 +34,7 @@ function App() {
         <HelmetProvider>
             <Router>
                 <div className="min-h-screen bg-black text-white selection:bg-orange-500 selection:text-white">
+                    <SmoothCursor />
                     <SEO />
                     {/* <ParticlesOverlay /> */}
                     <Navbar />
