@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import yelahankaImg from '../assets/yelahanka.png';
 import bangaloreImg from '../assets/bangalore.png';
 import communityImg from '../assets/community.png';
+import GeminiScrollSection from '../components/GeminiScrollSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,6 +88,11 @@ export default function About() {
                     <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light">
                         From a misty morning in Yelahanka to a movement that moves the city.
                     </p>
+                </div>
+
+                {/* VISUAL STORY: The Gemini Effect */}
+                <div className="-mx-6 mb-32">
+                    <GeminiScrollSection />
                 </div>
 
                 {/* Row 1: Roots */}
