@@ -5,24 +5,24 @@ export default function SundayRunPin() {
     return (
         <div className="w-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 py-20 -my-20">
 
-            {/* PIN 1: TRACK TUESDAY */}
+            {/* PIN 1: THE ROSTER */}
             <div className="h-[25rem] flex items-center justify-center">
-                <PinContainer title="Speedwork @ Kanteerava" href="/activity">
+                <PinContainer title="Meet the Crew" href="/about">
                     <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[16rem] h-[16rem]">
                         <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-                            TRACK TUESDAY
+                            THE ROSTER
                         </h3>
                         <div className="text-base !m-0 !p-0 font-normal">
                             <span className="text-slate-500">
-                                Kanteerava Stadium.
+                                80+ Active Runners.
                                 <br />
-                                6:30 AM Sharp.
+                                No one runs alone.
                             </span>
                         </div>
                         <div className="flex flex-1 w-full rounded-lg mt-4 bg-zinc-900 border border-white/10 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-transparent opacity-50"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-transparent opacity-50"></div>
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-4xl font-black text-white mix-blend-overlay opacity-30">TRACK</span>
+                                <span className="text-4xl font-black text-white mix-blend-overlay opacity-30">CREW</span>
                             </div>
                         </div>
                     </div>
@@ -61,24 +61,24 @@ export default function SundayRunPin() {
                 </PinContainer>
             </div>
 
-            {/* PIN 3: FRIDAY SOCIAL */}
+            {/* PIN 3: MERCH DROP */}
             <div className="h-[25rem] flex items-center justify-center">
-                <PinContainer title="Coffee Run @ Cubbon" href="/activity">
+                <PinContainer title="The New Collection" href="/events">
                     <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[16rem] h-[16rem]">
                         <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-                            FRIDAY SOCIAL
+                            MERCH DROP
                         </h3>
                         <div className="text-base !m-0 !p-0 font-normal">
                             <span className="text-slate-500">
-                                Cubbon Park Metro.
+                                Season 2 Collection.
                                 <br />
-                                7:00 AM • Easy 5K
+                                Limited Availability.
                             </span>
                         </div>
                         <div className="flex flex-1 w-full rounded-lg mt-4 bg-zinc-900 border border-white/10 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-transparent to-transparent opacity-50"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-transparent opacity-50"></div>
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-4xl font-black text-white mix-blend-overlay opacity-30">VIBES</span>
+                                <span className="text-4xl font-black text-white mix-blend-overlay opacity-30">SHOP</span>
                             </div>
                         </div>
                     </div>
