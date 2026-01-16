@@ -23,8 +23,21 @@ export default function HomeSections() {
     // ... (existing useEffect)
 
     return (
-        <div ref={containerRef} className="bg-black text-white px-6 py-20 flex flex-col gap-0 items-center relative z-10">
-            <div className="anim-section w-full max-w-7xl text-center space-y-8 mb-20">
+    return (
+        <div ref={containerRef} className="bg-black text-white px-2 md:px-10 py-20 flex flex-col gap-0 items-center relative z-10 w-full overflow-hidden">
+            {/* Background Grid Pattern */}
+            <div className="absolute inset-0 z-0 opacity-20 pointer-events-none"
+                style={{
+                    backgroundImage: `radial-gradient(#333 1px, transparent 1px)`,
+                    backgroundSize: '32px 32px'
+                }}>
+            </div>
+
+            {/* Side Glows */}
+            <div className="absolute top-0 left-0 w-1/3 h-full bg-orange-500/5 blur-[150px] pointer-events-none"></div>
+            <div className="absolute bottom-0 right-0 w-1/3 h-full bg-blue-500/5 blur-[150px] pointer-events-none"></div>
+
+            <div className="anim-section w-full max-w-[95%] text-center space-y-8 mb-20 relative z-10">
                 <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mix-blend-difference">
                     NOT JUST<br />A RUN CLUB.
                 </h2>
