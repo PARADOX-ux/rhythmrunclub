@@ -12,7 +12,7 @@ const cardData = [
     {
         color: 'rgba(255,255,255,0.02)',
         title: 'SUNDAY RUN',
-        description: '11th January 2026 • 6:00 AM\nYelahanka Main Gate',
+        description: '18th January 2026 • 7:00 AM\nGKVK Entrance',
         label: 'UPCOMING'
     },
     {
