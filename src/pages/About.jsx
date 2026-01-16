@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import yelahankaImg from '../assets/yelahanka.png';
 import bangaloreImg from '../assets/bangalore.png';
 import communityImg from '../assets/community.png';
-import GeminiScrollSection from '../components/GeminiScrollSection';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -175,11 +175,6 @@ export default function About() {
                     >
                         JOIN THE CLUB
                     </button>
-                </div>
-
-                {/* Gemini Effect Footer */}
-                <div className="-mx-6 mt-20">
-                    <GeminiScrollSection />
                 </div>
 
                 {/* Prank Payment Modal */}
