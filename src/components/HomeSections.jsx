@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // import Link from 'next/link';
 import NewJoinerFAQ from './NewJoinerFAQ';
+import SundayRunPin from './SundayRunPin';
 import StravaStats from './StravaStats';
 import RouteMap from './RouteMap';
 
@@ -38,10 +39,8 @@ export default function HomeSections() {
 
             <SectionConnector />
 
-            {/* Section 2: FAQ (New Joiner) */}
-            <NewJoinerFAQ />
-
-            <SectionConnector />
+            {/* Section 2: Sunday Run (3D Pin) */}
+            <SundayRunPin />
 
             {/* Section 3: The Roster */}
             <RunnerSpotlight />
@@ -82,6 +81,11 @@ export default function HomeSections() {
                     </p>
                 </div>
             </div>
+
+            <SectionConnector />
+
+            {/* FAQ (Moved to Bottom) */}
+            <NewJoinerFAQ />
 
             {/* FINAL CTA: Join WhatsApp (Moved to Bottom) */}
             <div className="py-20 text-center">
