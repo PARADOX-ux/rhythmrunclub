@@ -23,7 +23,6 @@ export default function HomeSections() {
     // ... (existing useEffect)
 
     return (
-    return (
         <div ref={containerRef} className="bg-black text-white px-2 md:px-10 py-20 flex flex-col gap-0 items-center relative z-10 w-full overflow-hidden">
             {/* Background Grid Pattern */}
             <div className="absolute inset-0 z-0 opacity-20 pointer-events-none"
