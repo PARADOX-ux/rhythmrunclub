@@ -67,9 +67,9 @@ const DefaultCursorSVG = () => {
 export default function SmoothCursor({
     cursor,
     springConfig = {
-        damping: 45,
-        stiffness: 400,
-        mass: 1,
+        damping: 35,
+        stiffness: 1000,
+        mass: 0.5,
         restDelta: 0.001,
     },
 }) {
