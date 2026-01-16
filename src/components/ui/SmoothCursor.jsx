@@ -7,11 +7,10 @@ const DefaultCursorSVG = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={50}
-            height={54}
+            width={20}
+            height={22}
             viewBox="0 0 50 54"
             fill="none"
-            style={{ scale: 0.15 }}
         >
             <g filter="url(#filter0_d_91_7928)">
                 <path
