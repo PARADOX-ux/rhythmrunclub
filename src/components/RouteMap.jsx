@@ -30,7 +30,7 @@ const routePoints = [
     [13.0645, 77.5930]  // Phoenix Mall of Asia (Finish)
 ];
 
-export default function RouteMap({ className = "w-full h-[500px] relative z-10 px-0 md:px-6 my-20" }) {
+export default function RouteMap({ className = "w-full h-[600px] relative z-10 px-0 md:px-0 my-20 max-w-[95%] mx-auto" }) {
     const customIcon = new L.DivIcon({
         className: 'custom-marker-icon',
         html: '<div class="marker-pin"></div>',

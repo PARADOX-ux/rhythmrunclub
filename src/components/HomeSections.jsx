@@ -24,7 +24,7 @@ export default function HomeSections() {
 
     return (
         <div ref={containerRef} className="bg-black text-white px-6 py-20 flex flex-col gap-0 items-center relative z-10">
-            <div className="anim-section w-full max-w-4xl text-center space-y-8 mb-20">
+            <div className="anim-section w-full max-w-7xl text-center space-y-8 mb-20">
                 <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mix-blend-difference">
                     NOT JUST<br />A RUN CLUB.
                 </h2>
