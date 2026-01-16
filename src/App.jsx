@@ -32,9 +32,16 @@ function App() {
     return (
         <HelmetProvider>
             <Router>
-            </div>
-        </div>
-            </Router >
-        </HelmetProvider >
+                <div className="min-h-screen bg-black text-white selection:bg-orange-500 selection:text-white">
+                    <SEO />
+                    <ParticlesOverlay />
+                    <Navbar />
+                    <AnimatedRoutes />
+                    <Footer />
+                </div>
+            </Router>
+        </HelmetProvider>
     );
 }
+
+export default App;
