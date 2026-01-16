@@ -90,10 +90,7 @@ export default function About() {
                     </p>
                 </div>
 
-                {/* VISUAL STORY: The Gemini Effect */}
-                <div className="-mx-6 mb-32">
-                    <GeminiScrollSection />
-                </div>
+                {/* VISUAL STORY: The Gemini Effect (Moved to Bottom) */}
 
                 {/* Row 1: Roots */}
                 <div className="grid grid-cols-1 md:grid-cols-2 min-h-[700px] mb-20">
@@ -178,6 +175,11 @@ export default function About() {
                     >
                         JOIN THE CLUB
                     </button>
+                </div>
+
+                {/* Gemini Effect Footer */}
+                <div className="-mx-6 mt-20">
+                    <GeminiScrollSection />
                 </div>
 
                 {/* Prank Payment Modal */}
