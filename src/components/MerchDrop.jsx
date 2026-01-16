@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db, auth, allowAnonymousLogin } from "../firebase";
 
 export default function MerchDrop() {
     const [email, setEmail] = useState("");
@@ -14,6 +14,11 @@ export default function MerchDrop() {
 
         setStatus("loading");
         try {
+            // Ensure user is authenticated (anonymously if needed)
+            if (!auth.currentUser) {
+                await allowAnonymousLogin();
+            }
+
             await addDoc(collection(db, "merch_waitlist"), {
                 email: email,
                 timestamp: new Date()
