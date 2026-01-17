@@ -161,7 +161,7 @@ const OrbitingCircles = memo(function OrbitingCircles({
                     className='pointer-events-none absolute inset-0 size-full'
                 >
                     <circle
-                        className='stroke-white/5 stroke-1'
+                        className='stroke-white/10 stroke-1'
                         cx='50%'
                         cy='50%'
                         r={radius}
@@ -198,22 +198,22 @@ const TechOrbitDisplay = memo(function TechOrbitDisplay({
             <span className='pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-white to-gray-500 bg-clip-text text-center text-8xl font-black leading-none text-transparent tracking-tighter opacity-100 mix-blend-difference z-10'>
                 {text}
             </span>
-             
-             {/* Center Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-orange-500/10 blur-[100px] rounded-full"></div>
+
+            {/* Center Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-orange-500/10 blur-[100px] rounded-full"></div>
 
             {iconsArray.map((icon, index) => (
                 <OrbitingCircles
                     key={index}
-                    className={icon.className}
+                    className="border-none bg-transparent"
                     duration={icon.duration}
                     delay={icon.delay}
                     radius={icon.radius}
                     path={icon.path}
                     reverse={icon.reverse}
                 >
-                    <div className="bg-black/50 border border-white/10 p-3 rounded-full backdrop-blur-md text-white hover:text-orange-500 hover:scale-110 transition-all duration-300 hover:border-orange-500/50">
-                     {icon.component()}
+                    <div className={cn("rounded-full flex items-center justify-center p-3 bg-[#0a0a0a] border border-white/20 shadow-[0_0_15px_rgba(255,165,0,0.15)] hover:scale-125 transition-transform duration-300", icon.className)}>
+                        {icon.component()}
                     </div>
                 </OrbitingCircles>
             ))}
@@ -419,146 +419,85 @@ export default function AnimatedLogin() {
     ];
 
     const iconsArray = [
-        // React (Cyan) - Inner Orbit
+        // REACT (Cyan) - Small Radius
         {
             component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(97,218,251,0.5)]">
-                    <circle cx="12" cy="12" r="2.5" fill="#61DAFB" />
-                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
-                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
-                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+                <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.5" className="size-8 text-[#61DAFB]">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" />
+                    <ellipse cx="12" cy="12" rx="8" ry="3" transform="rotate(0 12 12)" stroke="currentColor" />
+                    <ellipse cx="12" cy="12" rx="8" ry="3" transform="rotate(60 12 12)" stroke="currentColor" />
+                    <ellipse cx="12" cy="12" rx="8" ry="3" transform="rotate(120 12 12)" stroke="currentColor" />
                 </svg>
             ),
-            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
+            className: "size-14",
             duration: 20,
             delay: 0,
-            radius: 90,
+            radius: 110,
             path: true
         },
-        // HTML5 (Orange) - Inner Orbit (Opposite)
+        // TAILWIND (Teal) - Medium Radius
         {
             component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="#E34F26" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(227,79,38,0.5)]">
-                    <path d="M4 3h16l-1.5 15L12 22l-6.5-4L4 3z" />
-                    <path d="M12 6v12" strokeOpacity="0.5" />
-                    <path d="M12 18l4-2.5 1-9H7" />
+                <svg viewBox="0 0 24 24" fill="currentColor" className="size-8 text-[#38B2AC]">
+                    <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
                 </svg>
             ),
-            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
-            duration: 20,
+            className: "size-14",
+            duration: 25,
             delay: 10,
-            radius: 90,
-            path: false, // Share radius
+            radius: 170,
+            path: true,
             reverse: true
         },
-        // Tailwind (Teal) - Middle Orbit
+        // FIREBASE (Orange/Amber) - Medium Radius (Opposite)
         {
             component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(56,178,172,0.5)]">
-                    <path d="M17.5 19c0-5-2.5-7-3-7 5 0 7-5 7-7S19 0 17.5 0c-2 0-4.5 2-6 5.5 0 5 2.5 7 3 7-5 0-7 5-7 7s2.5 5 4 5c2 0 4.5-2 6-5.5z" />
+                <svg viewBox="0 0 24 24" fill="currentColor" className="size-8 text-[#FFCA28]">
+                    <path d="M3.89 15.672L6.255.44a.978.978 0 011.83.21L10.22 12.8l1.458-9.1a.98.98 0 011.895-.144L12 12.604l4.246-8.232a.978.978 0 011.77.126l4.242 11.23L12.784 21.64a1.056 1.056 0 01-.96.003L3.89 15.672z" />
                 </svg>
             ),
-            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
-            duration: 30,
-            delay: 5,
-            radius: 140,
-            path: true
-        },
-        // Firebase (Amber) - Middle Orbit
-        {
-            component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="#FFCA28" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(255,202,40,0.5)]">
-                     <path d="M4.5 16.5l-2.5-9 2.5-1 2 5.5M20 16.5l1.5-6.5-2-1.5-4.5 9M12 22l8-5.5L16.5 6l-3.5 10-5-14L4.5 16.5 12 22z" />
-                </svg>
-            ),
-            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
-            duration: 30,
+            className: "size-14",
+            duration: 25,
             delay: 20,
-            radius: 140,
+            radius: 170,
             path: false,
             reverse: true
         },
-        // Python (Blue/Yellow) - Outer Orbit
+        // VITE (Purple) - Large Radius
         {
             component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="#3776AB" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(55,118,171,0.5)]">
-                    <path d="M12 2c-3 0-5 2-5 5v2h8V7c0-2-2-3-5-3zm0 2c.5 0 1 .5 1 1s-.5 1-1 1-1-.5-1-1 .5-1 1-1z" fill="#3776AB" stroke="none" />
-                    <path d="M10 22c-3 0-5-2-5-5v-3h3v2c0 2 2 3 5 3s5-1 5-3v-5H9v-2h10v5c0 4-3 5-9 5zm2-3c-.5 0-1 .5-1 1s.5 1 1 1 1-.5 1-1-.5-1-1-1z" stroke="#FFD43B" />
-                    <path d="M12 22c3 0 5-2 5-5v-1" stroke="#FFD43B" />
+                <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.5" className="size-8">
+                    <path d="M2.5 5.5L12 22L21.5 5.5l-9.333 1.667L2.5 5.5Z" fill="#646CFF" stroke="#BD34FE" />
+                    <path d="M12 22L8 8L16 8L12 22Z" fill="#FFD21F" />
                 </svg>
             ),
-            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
-            duration: 40,
-            delay: 15,
-            radius: 190,
-            path: true
-        },
-        // Next.js (White) - Outer Orbit
-        {
-            component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-                    <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
-                </svg>
-            ),
-            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
-            duration: 40,
-            delay: 35,
-            radius: 190,
-            path: false,
-            reverse: true
-        },
-        // Vite (Purple) - Far Orbit
-        {
-            component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="#646CFF" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(100,108,255,0.5)]">
-                    <path d="M12 22L2 5l10-3 10 3-10 17z" />
-                    <path d="M12 7l-5 9h10l-5-9z" stroke="#FFD43B" />
-                </svg>
-            ),
-            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
-            duration: 50,
+            className: "size-14",
+            duration: 35,
             delay: 5,
             radius: 240,
             path: true
-        },
-         // JSON (Green) - Far Orbit
-         {
-            component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(76,175,80,0.5)]">
-                   <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-                   <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" />
-                   <path d="M10 12h4" />
-                   <path d="M10 16h4" />
-                </svg>
-            ),
-            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
-            duration: 50,
-            delay: 25,
-            radius: 240,
-            path: false,
-            reverse: true
         },
     ];
 
     return (
         <div className="flex min-h-screen w-full bg-black font-sans overflow-hidden">
-            
+
             {/* Left Side: Orbit Display (Desktop Only) */}
             <div className="hidden lg:flex w-1/2 items-center justify-center relative border-r border-white/5">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-black to-black"></div>
-                
-                 {/* Grid Pattern */}
+
+                {/* Grid Pattern */}
                 <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: `radial-gradient(#333 1px, transparent 1px)`, backgroundSize: '32px 32px' }}></div>
-                
+
                 <TechOrbitDisplay iconsArray={iconsArray} text="RHYTHM" />
             </div>
 
             {/* Right Side: Auth Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-6 relative">
-                 {/* Mobile Background: simplified */}
+                {/* Mobile Background: simplified */}
                 <div className="absolute inset-0 lg:hidden opacity-10 pointer-events-none" style={{ backgroundImage: `radial-gradient(#333 1px, transparent 1px)`, backgroundSize: '32px 32px' }}></div>
 
-                <AnimatedForm 
+                <AnimatedForm
                     header={isLoginMode ? "WELCOME BACK" : "JOIN THE CLUB"}
                     subHeader={isLoginMode ? "Sign in to access your dashboard." : "Create an account to start tracking."}
                     fields={formFields}
@@ -571,10 +510,10 @@ export default function AnimatedLogin() {
 
                 {/* Corner Decor */}
                 <div className="absolute top-0 right-0 p-10 hidden lg:block">
-                     <div className="w-20 h-20 border-t-2 border-r-2 border-white/10 rounded-tr-3xl"></div>
+                    <div className="w-20 h-20 border-t-2 border-r-2 border-white/10 rounded-tr-3xl"></div>
                 </div>
-                 <div className="absolute bottom-0 left-0 p-10 hidden lg:block">
-                     <div className="w-20 h-20 border-b-2 border-l-2 border-white/10 rounded-bl-3xl"></div>
+                <div className="absolute bottom-0 left-0 p-10 hidden lg:block">
+                    <div className="w-20 h-20 border-b-2 border-l-2 border-white/10 rounded-bl-3xl"></div>
                 </div>
             </div>
         </div>
