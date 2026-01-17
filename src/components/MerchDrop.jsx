@@ -40,7 +40,7 @@ export default function MerchDrop() {
     };
 
     return (
-        <div className="w-full max-w-6xl py-20 px-4">
+        <div id="merch-drop" className="w-full max-w-6xl py-20 px-4">
             <div className="relative w-full h-[500px] md:h-[600px] bg-zinc-900 rounded-3xl overflow-hidden group border border-white/5">
 
                 {/* 1. Animated Marquee Background */}
