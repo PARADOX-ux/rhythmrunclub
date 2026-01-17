@@ -13,7 +13,7 @@ import {
     useMotionTemplate,
     useMotionValue,
 } from 'framer-motion';
-import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, User, Activity, Map, Timer, Zap, Trophy, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
 import { signInWithGoogle, auth } from '../../firebase';
@@ -61,7 +61,7 @@ const Input = memo(
                 <input
                     type={type}
                     className={cn(
-                        `shadow-input dark:placeholder-text-neutral-600 flex h-10 w-full rounded-md border-none bg-gray-50 px-3 py-2 text-sm text-black transition duration-400 group-hover/input:shadow-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 focus-visible:ring-[2px] focus-visible:ring-neutral-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-900/50 dark:text-white dark:shadow-[0px_0px_1px_1px_#404040] dark:focus-visible:ring-orange-500`,
+                        `shadow-input dark:placeholder-text-neutral-600 flex h-10 w-full rounded-md border-none bg-zinc-900/80 px-3 py-2 text-sm text-white transition duration-400 group-hover/input:shadow-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:ring-[2px] focus-visible:ring-orange-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 shadow-[0px_0px_1px_1px_#27272a]`,
                         className
                     )}
                     ref={ref}
@@ -141,47 +141,82 @@ const BoxReveal = memo(function BoxReveal({
     );
 });
 
-// ==================== Ripple Component ====================
+// ==================== OrbitingCircles Component ====================
 
-const Ripple = memo(function Ripple({
-    mainCircleSize = 210,
-    mainCircleOpacity = 0.24,
-    numCircles = 11,
-    className = '',
+const OrbitingCircles = memo(function OrbitingCircles({
+    className,
+    children,
+    reverse = false,
+    duration = 20,
+    delay = 10,
+    radius = 50,
+    path = true,
 }) {
     return (
-        <section
-            className={`absolute inset-0 flex items-center justify-center
-        bg-transparent
-        [mask-image:linear-gradient(to_bottom,black,transparent)]
-        dark:[mask-image:linear-gradient(to_bottom,white,transparent)] ${className}`}
-        >
-            {Array.from({ length: numCircles }, (_, i) => {
-                const size = mainCircleSize + i * 70;
-                const opacity = mainCircleOpacity - i * 0.03;
-                const animationDelay = `${i * 0.06}s`;
-                const borderStyle = i === numCircles - 1 ? 'dashed' : 'solid';
-                const borderOpacity = 5 + i * 5;
-
-                return (
-                    <span
-                        key={i}
-                        className='absolute animate-ripple rounded-full bg-orange-500/10 border'
-                        style={{
-                            width: `${size}px`,
-                            height: `${size}px`,
-                            opacity: opacity,
-                            animationDelay: animationDelay,
-                            borderStyle: borderStyle,
-                            borderWidth: '1px',
-                            borderColor: `rgba(249, 115, 22, ${borderOpacity / 100})`, // Orange border
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                        }}
+        <>
+            {path && (
+                <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    version='1.1'
+                    className='pointer-events-none absolute inset-0 size-full'
+                >
+                    <circle
+                        className='stroke-white/5 stroke-1'
+                        cx='50%'
+                        cy='50%'
+                        r={radius}
+                        fill='none'
                     />
-                );
-            })}
+                </svg>
+            )}
+            <div
+                style={{
+                    '--duration': duration,
+                    '--radius': radius,
+                    '--delay': -delay,
+                }}
+                className={cn(
+                    'absolute flex size-full transform-gpu animate-orbit items-center justify-center rounded-full [animation-delay:calc(var(--delay)*1000ms)]',
+                    { '[animation-direction:reverse]': reverse },
+                    className
+                )}
+            >
+                {children}
+            </div>
+        </>
+    );
+});
+
+// ==================== TechOrbitDisplay Component ====================
+
+const TechOrbitDisplay = memo(function TechOrbitDisplay({
+    iconsArray,
+    text = 'RHYTHM',
+}) {
+    return (
+        <section className='relative flex h-full w-full flex-col items-center justify-center overflow-hidden'>
+            <span className='pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-white to-gray-500 bg-clip-text text-center text-8xl font-black leading-none text-transparent tracking-tighter opacity-100 mix-blend-difference z-10'>
+                {text}
+            </span>
+
+            {/* Center Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-orange-500/10 blur-[100px] rounded-full"></div>
+
+            {iconsArray.map((icon, index) => (
+                <OrbitingCircles
+                    key={index}
+                    className={icon.className}
+                    duration={icon.duration}
+                    delay={icon.delay}
+                    radius={icon.radius}
+                    path={icon.path}
+                    reverse={icon.reverse}
+                >
+                    <div className="bg-black/50 border border-white/10 p-3 rounded-full backdrop-blur-md text-white hover:text-orange-500 hover:scale-110 transition-all duration-300 hover:border-orange-500/50">
+                        {icon.component()}
+                    </div>
+                </OrbitingCircles>
+            ))}
         </section>
     );
 });
@@ -215,20 +250,22 @@ const AnimatedForm = memo(function AnimatedForm({
     );
 
     return (
-        <section className='flex flex-col gap-4 w-full max-w-sm mx-auto z-20 relative'>
-            <BoxReveal boxColor='#f97316' duration={0.3}>
-                <h2 className='font-bold text-3xl text-neutral-800 dark:text-neutral-200'>
-                    {header}
-                </h2>
-            </BoxReveal>
-
-            {subHeader && (
-                <BoxReveal boxColor='#f97316' duration={0.3} className='pb-2'>
-                    <p className='text-neutral-600 text-sm max-w-sm dark:text-neutral-300'>
-                        {subHeader}
-                    </p>
+        <section className='flex flex-col gap-6 w-full max-w-[350px] mx-auto z-20 relative'>
+            <div className="space-y-1">
+                <BoxReveal boxColor='#f97316' duration={0.3}>
+                    <h2 className='font-black italic text-4xl text-white tracking-tighter'>
+                        {header}
+                    </h2>
                 </BoxReveal>
-            )}
+
+                {subHeader && (
+                    <BoxReveal boxColor='#f97316' duration={0.3} className='pb-2'>
+                        <p className='text-zinc-500 text-sm font-medium tracking-wide'>
+                            {subHeader}
+                        </p>
+                    </BoxReveal>
+                )}
+            </div>
 
             {/* GOOGLE LOGIN */}
             {googleLogin && (
@@ -240,7 +277,7 @@ const AnimatedForm = memo(function AnimatedForm({
                         width='unset'
                     >
                         <button
-                            className='group/btn relative bg-zinc-900 w-full rounded-md border border-zinc-800 h-10 font-medium hover:bg-zinc-800 transition-colors cursor-pointer flex items-center justify-center gap-3'
+                            className='group/btn relative bg-zinc-900/50 w-full rounded-lg border border-zinc-800 h-12 font-bold hover:bg-zinc-800 transition-all cursor-pointer flex items-center justify-center gap-3 backdrop-blur-sm hover:border-zinc-700'
                             type='button'
                             onClick={signInWithGoogle}
                         >
@@ -250,32 +287,30 @@ const AnimatedForm = memo(function AnimatedForm({
                                 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
                                 <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
                             </svg>
-                            <span className="text-white text-sm">Continue with Google</span>
+                            <span className="text-white text-sm">CONTINUE WITH GOOGLE</span>
                             {bottomGradient}
                         </button>
                     </BoxReveal>
 
-                    <BoxReveal boxColor='#f97316' duration={0.3} width='100%'>
-                        <section className='flex items-center gap-4 py-4'>
-                            <hr className='flex-1 border-dashed border-zinc-700' />
-                            <p className='text-zinc-500 text-xs uppercase'>or with email</p>
-                            <hr className='flex-1 border-dashed border-zinc-700' />
-                        </section>
-                    </BoxReveal>
+                    <div className="flex items-center gap-4 py-2 opacity-50">
+                        <hr className='flex-1 border-dashed border-zinc-700' />
+                        <p className='text-zinc-500 text-[10px] font-black uppercase tracking-widest'>OR</p>
+                        <hr className='flex-1 border-dashed border-zinc-700' />
+                    </div>
                 </>
             )}
 
             {/* EMAIL FORM */}
-            <form onSubmit={onSubmit} className="flex flex-col gap-4">
+            <form onSubmit={onSubmit} className="flex flex-col gap-5">
                 {fields.map((field) => (
                     <section key={field.label} className='flex flex-col gap-2'>
                         <BoxReveal
                             width='100%'
                             boxColor='#f97316'
                             duration={0.3}
-                            className='flex flex-col space-y-2 w-full'
+                            className='flex flex-col space-y-1.5 w-full'
                         >
-                            <label className="text-xs font-bold text-zinc-500 uppercase ml-1">{field.label}</label>
+                            <label className="text-[10px] font-black text-zinc-500 uppercase ml-1 tracking-wider">{field.label}</label>
                             <section className='relative'>
                                 <Input
                                     type={
@@ -294,7 +329,7 @@ const AnimatedForm = memo(function AnimatedForm({
                                     <button
                                         type='button'
                                         onClick={toggleVisibility}
-                                        className='absolute inset-y-0 right-0 pr-3 flex items-center text-zinc-400 hover:text-white transition-colors'
+                                        className='absolute inset-y-0 right-0 pr-3 flex items-center text-zinc-500 hover:text-white transition-colors'
                                     >
                                         {visible ? (
                                             <Eye className='h-4 w-4' />
@@ -315,8 +350,8 @@ const AnimatedForm = memo(function AnimatedForm({
                     overflow='visible'
                 >
                     <button
-                        className='relative group/btn bg-gradient-to-br from-orange-400 to-orange-600 block w-full text-white rounded-md h-10 font-bold shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] 
-              transform transition-all active:scale-[0.98]'
+                        className='relative group/btn bg-white text-black block w-full rounded-lg h-12 font-black italic tracking-wider shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] 
+              transform transition-all active:scale-[0.98] hover:bg-orange-500 hover:text-white hover:scale-[1.02]'
                         type='submit'
                     >
                         {submitButton} &rarr;
@@ -326,10 +361,10 @@ const AnimatedForm = memo(function AnimatedForm({
 
                 {/* TOGGLE LOGIN/SIGNUP */}
                 <BoxReveal boxColor='#f97316' duration={0.3}>
-                    <section className='mt-4 text-center'>
+                    <section className='mt-2 text-center'>
                         <button
                             type="button"
-                            className='text-sm text-zinc-400 hover:text-orange-500 transition-colors'
+                            className='text-xs font-bold text-zinc-600 hover:text-white transition-colors uppercase tracking-wide'
                             onClick={toggleMode}
                         >
                             {isLoginMode ? "Need an account? Sign Up" : "Already have an account? Login"}
@@ -370,7 +405,7 @@ export default function AnimatedLogin() {
 
     const formFields = [
         {
-            label: 'Email',
+            label: 'Email Address',
             type: 'email',
             placeholder: 'rhythm@runner.com',
             onChange: (e) => setFormData(prev => ({ ...prev, email: e.target.value }))
@@ -383,28 +418,79 @@ export default function AnimatedLogin() {
         }
     ];
 
+    const iconsArray = [
+        {
+            component: () => <Activity size={20} />,
+            className: "size-10",
+            duration: 20,
+            delay: 0,
+            radius: 80,
+            path: true
+        },
+        {
+            component: () => <Map size={24} />,
+            className: "size-12",
+            duration: 25,
+            delay: 10,
+            radius: 170,
+            path: true
+        },
+        {
+            component: () => <Zap size={22} />,
+            className: "size-10",
+            duration: 15,
+            delay: 5,
+            radius: 130,
+            path: true,
+            reverse: true
+        },
+        {
+            component: () => <Trophy size={26} />,
+            className: "size-14",
+            duration: 30,
+            delay: 15,
+            radius: 240,
+            path: true
+        },
+    ];
+
     return (
-        <div className="relative min-h-screen w-full flex items-center justify-center bg-black overflow-hidden font-sans">
-            {/* Background Ripple & Orbit */}
-            <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
-                <Ripple mainCircleSize={300} numCircles={8} />
+        <div className="flex min-h-screen w-full bg-black font-sans overflow-hidden">
+
+            {/* Left Side: Orbit Display (Desktop Only) */}
+            <div className="hidden lg:flex w-1/2 items-center justify-center relative border-r border-white/5">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-black to-black"></div>
+
+                {/* Grid Pattern */}
+                <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: `radial-gradient(#333 1px, transparent 1px)`, backgroundSize: '32px 32px' }}></div>
+
+                <TechOrbitDisplay iconsArray={iconsArray} text="RHYTHM" />
             </div>
 
-            <div className="relative z-10 w-full max-w-md px-6">
+            {/* Right Side: Auth Form */}
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 relative">
+                {/* Mobile Background: simplified */}
+                <div className="absolute inset-0 lg:hidden opacity-10 pointer-events-none" style={{ backgroundImage: `radial-gradient(#333 1px, transparent 1px)`, backgroundSize: '32px 32px' }}></div>
+
                 <AnimatedForm
-                    header={isLoginMode ? "Welcome Back" : "Join the Club"}
+                    header={isLoginMode ? "WELCOME BACK" : "JOIN THE CLUB"}
                     subHeader={isLoginMode ? "Sign in to access your dashboard." : "Create an account to start tracking."}
                     fields={formFields}
-                    submitButton={isLoginMode ? "LOGIN" : "CREATE ACCOUNT"}
+                    submitButton={isLoginMode ? "LOG IN" : "CREATE ACCOUNT"}
                     googleLogin="Google"
                     onSubmit={handleSubmit}
                     isLoginMode={isLoginMode}
                     toggleMode={() => setIsLoginMode(!isLoginMode)}
                 />
-            </div>
 
-            {/* Corner Decor */}
-            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-red-500 to-transparent"></div>
+                {/* Corner Decor */}
+                <div className="absolute top-0 right-0 p-10 hidden lg:block">
+                    <div className="w-20 h-20 border-t-2 border-r-2 border-white/10 rounded-tr-3xl"></div>
+                </div>
+                <div className="absolute bottom-0 left-0 p-10 hidden lg:block">
+                    <div className="w-20 h-20 border-b-2 border-l-2 border-white/10 rounded-bl-3xl"></div>
+                </div>
+            </div>
         </div>
     );
 }
