@@ -420,7 +420,15 @@ export default function AnimatedLogin() {
 
     const iconsArray = [
         {
-            component: () => <Activity size={20} />,
+            component: () => (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-full">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="4" />
+                    <line x1="21.17" x2="12" y1="8" y2="8" />
+                    <line x1="3.95" x2="8.54" y1="6.06" y2="14" />
+                    <line x1="10.88" x2="15.46" y1="21.94" y2="14" />
+                </svg>
+            ), // Reactish Atom
             className: "size-10",
             duration: 20,
             delay: 0,
@@ -428,7 +436,11 @@ export default function AnimatedLogin() {
             path: true
         },
         {
-            component: () => <Map size={24} />,
+            component: () => (
+                <svg viewBox="0 0 24 24" fill="none" className="size-full" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+            ), // Stack/Pythonish
             className: "size-12",
             duration: 25,
             delay: 10,
@@ -436,7 +448,11 @@ export default function AnimatedLogin() {
             path: true
         },
         {
-            component: () => <Zap size={22} />,
+            component: () => (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-full">
+                    <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+                </svg>
+            ), // Command/NextJS-ish
             className: "size-10",
             duration: 15,
             delay: 5,
@@ -445,12 +461,33 @@ export default function AnimatedLogin() {
             reverse: true
         },
         {
-            component: () => <Trophy size={26} />,
+            component: () => (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-full">
+                    <polyline points="16 18 22 12 16 6" />
+                    <polyline points="8 6 2 12 8 18" />
+                </svg>
+            ), // Code/HTML
             className: "size-14",
             duration: 30,
             delay: 15,
             radius: 240,
             path: true
+        },
+        {
+            component: () => (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-full">
+                    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" />
+                    <path d="M10 13l-2 2 2 2" />
+                    <path d="M14 17l2-2-2-2" />
+                </svg>
+            ), // File JSON
+            className: "size-8",
+            duration: 22,
+            delay: 8,
+            radius: 190,
+            path: true,
+            reverse: true
         },
     ];
 

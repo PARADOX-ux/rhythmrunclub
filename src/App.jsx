@@ -29,10 +29,13 @@ function AnimatedRoutes() {
     );
 }
 
+import ScrollToTop from './components/ui/ScrollToTop';
+
 function App() {
     return (
         <HelmetProvider>
             <Router>
+                <ScrollToTop />
                 <div className="min-h-screen bg-black text-white selection:bg-orange-500 selection:text-white">
                     <SmoothCursor />
                     <SEO />
