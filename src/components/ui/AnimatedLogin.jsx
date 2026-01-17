@@ -198,8 +198,8 @@ const TechOrbitDisplay = memo(function TechOrbitDisplay({
             <span className='pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-white to-gray-500 bg-clip-text text-center text-8xl font-black leading-none text-transparent tracking-tighter opacity-100 mix-blend-difference z-10'>
                 {text}
             </span>
-
-            {/* Center Glow */}
+             
+             {/* Center Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-orange-500/10 blur-[100px] rounded-full"></div>
 
             {iconsArray.map((icon, index) => (
@@ -213,7 +213,7 @@ const TechOrbitDisplay = memo(function TechOrbitDisplay({
                     reverse={icon.reverse}
                 >
                     <div className="bg-black/50 border border-white/10 p-3 rounded-full backdrop-blur-md text-white hover:text-orange-500 hover:scale-110 transition-all duration-300 hover:border-orange-500/50">
-                        {icon.component()}
+                     {icon.component()}
                     </div>
                 </OrbitingCircles>
             ))}
@@ -419,97 +419,146 @@ export default function AnimatedLogin() {
     ];
 
     const iconsArray = [
+        // React (Cyan) - Inner Orbit
         {
             component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-full">
-                    <circle cx="12" cy="12" r="10" />
-                    <circle cx="12" cy="12" r="4" />
-                    <line x1="21.17" x2="12" y1="8" y2="8" />
-                    <line x1="3.95" x2="8.54" y1="6.06" y2="14" />
-                    <line x1="10.88" x2="15.46" y1="21.94" y2="14" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(97,218,251,0.5)]">
+                    <circle cx="12" cy="12" r="2.5" fill="#61DAFB" />
+                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
+                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
                 </svg>
-            ), // Reactish Atom
-            className: "size-10",
+            ),
+            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
             duration: 20,
             delay: 0,
-            radius: 80,
+            radius: 90,
             path: true
         },
+        // HTML5 (Orange) - Inner Orbit (Opposite)
         {
             component: () => (
-                <svg viewBox="0 0 24 24" fill="none" className="size-full" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="#E34F26" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(227,79,38,0.5)]">
+                    <path d="M4 3h16l-1.5 15L12 22l-6.5-4L4 3z" />
+                    <path d="M12 6v12" strokeOpacity="0.5" />
+                    <path d="M12 18l4-2.5 1-9H7" />
                 </svg>
-            ), // Stack/Pythonish
-            className: "size-12",
-            duration: 25,
+            ),
+            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
+            duration: 20,
             delay: 10,
-            radius: 170,
-            path: true
-        },
-        {
-            component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-full">
-                    <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
-                </svg>
-            ), // Command/NextJS-ish
-            className: "size-10",
-            duration: 15,
-            delay: 5,
-            radius: 130,
-            path: true,
+            radius: 90,
+            path: false, // Share radius
             reverse: true
         },
+        // Tailwind (Teal) - Middle Orbit
         {
             component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-full">
-                    <polyline points="16 18 22 12 16 6" />
-                    <polyline points="8 6 2 12 8 18" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="#38B2AC" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(56,178,172,0.5)]">
+                    <path d="M17.5 19c0-5-2.5-7-3-7 5 0 7-5 7-7S19 0 17.5 0c-2 0-4.5 2-6 5.5 0 5 2.5 7 3 7-5 0-7 5-7 7s2.5 5 4 5c2 0 4.5-2 6-5.5z" />
                 </svg>
-            ), // Code/HTML
-            className: "size-14",
+            ),
+            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
             duration: 30,
+            delay: 5,
+            radius: 140,
+            path: true
+        },
+        // Firebase (Amber) - Middle Orbit
+        {
+            component: () => (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FFCA28" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(255,202,40,0.5)]">
+                     <path d="M4.5 16.5l-2.5-9 2.5-1 2 5.5M20 16.5l1.5-6.5-2-1.5-4.5 9M12 22l8-5.5L16.5 6l-3.5 10-5-14L4.5 16.5 12 22z" />
+                </svg>
+            ),
+            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
+            duration: 30,
+            delay: 20,
+            radius: 140,
+            path: false,
+            reverse: true
+        },
+        // Python (Blue/Yellow) - Outer Orbit
+        {
+            component: () => (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#3776AB" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(55,118,171,0.5)]">
+                    <path d="M12 2c-3 0-5 2-5 5v2h8V7c0-2-2-3-5-3zm0 2c.5 0 1 .5 1 1s-.5 1-1 1-1-.5-1-1 .5-1 1-1z" fill="#3776AB" stroke="none" />
+                    <path d="M10 22c-3 0-5-2-5-5v-3h3v2c0 2 2 3 5 3s5-1 5-3v-5H9v-2h10v5c0 4-3 5-9 5zm2-3c-.5 0-1 .5-1 1s.5 1 1 1 1-.5 1-1-.5-1-1-1z" stroke="#FFD43B" />
+                    <path d="M12 22c3 0 5-2 5-5v-1" stroke="#FFD43B" />
+                </svg>
+            ),
+            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
+            duration: 40,
             delay: 15,
+            radius: 190,
+            path: true
+        },
+        // Next.js (White) - Outer Orbit
+        {
+            component: () => (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                    <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+                </svg>
+            ),
+            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
+            duration: 40,
+            delay: 35,
+            radius: 190,
+            path: false,
+            reverse: true
+        },
+        // Vite (Purple) - Far Orbit
+        {
+            component: () => (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#646CFF" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(100,108,255,0.5)]">
+                    <path d="M12 22L2 5l10-3 10 3-10 17z" />
+                    <path d="M12 7l-5 9h10l-5-9z" stroke="#FFD43B" />
+                </svg>
+            ),
+            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
+            duration: 50,
+            delay: 5,
             radius: 240,
             path: true
         },
-        {
+         // JSON (Green) - Far Orbit
+         {
             component: () => (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-full">
-                    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" />
-                    <path d="M10 13l-2 2 2 2" />
-                    <path d="M14 17l2-2-2-2" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="1.5" className="size-full drop-shadow-[0_0_10px_rgba(76,175,80,0.5)]">
+                   <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                   <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" />
+                   <path d="M10 12h4" />
+                   <path d="M10 16h4" />
                 </svg>
-            ), // File JSON
-            className: "size-8",
-            duration: 22,
-            delay: 8,
-            radius: 190,
-            path: true,
+            ),
+            className: "size-12 bg-black/80 border border-white/10 rounded-full p-2",
+            duration: 50,
+            delay: 25,
+            radius: 240,
+            path: false,
             reverse: true
         },
     ];
 
     return (
         <div className="flex min-h-screen w-full bg-black font-sans overflow-hidden">
-
+            
             {/* Left Side: Orbit Display (Desktop Only) */}
             <div className="hidden lg:flex w-1/2 items-center justify-center relative border-r border-white/5">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-black to-black"></div>
-
-                {/* Grid Pattern */}
+                
+                 {/* Grid Pattern */}
                 <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: `radial-gradient(#333 1px, transparent 1px)`, backgroundSize: '32px 32px' }}></div>
-
+                
                 <TechOrbitDisplay iconsArray={iconsArray} text="RHYTHM" />
             </div>
 
             {/* Right Side: Auth Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-6 relative">
-                {/* Mobile Background: simplified */}
+                 {/* Mobile Background: simplified */}
                 <div className="absolute inset-0 lg:hidden opacity-10 pointer-events-none" style={{ backgroundImage: `radial-gradient(#333 1px, transparent 1px)`, backgroundSize: '32px 32px' }}></div>
 
-                <AnimatedForm
+                <AnimatedForm 
                     header={isLoginMode ? "WELCOME BACK" : "JOIN THE CLUB"}
                     subHeader={isLoginMode ? "Sign in to access your dashboard." : "Create an account to start tracking."}
                     fields={formFields}
@@ -522,10 +571,10 @@ export default function AnimatedLogin() {
 
                 {/* Corner Decor */}
                 <div className="absolute top-0 right-0 p-10 hidden lg:block">
-                    <div className="w-20 h-20 border-t-2 border-r-2 border-white/10 rounded-tr-3xl"></div>
+                     <div className="w-20 h-20 border-t-2 border-r-2 border-white/10 rounded-tr-3xl"></div>
                 </div>
-                <div className="absolute bottom-0 left-0 p-10 hidden lg:block">
-                    <div className="w-20 h-20 border-b-2 border-l-2 border-white/10 rounded-bl-3xl"></div>
+                 <div className="absolute bottom-0 left-0 p-10 hidden lg:block">
+                     <div className="w-20 h-20 border-b-2 border-l-2 border-white/10 rounded-bl-3xl"></div>
                 </div>
             </div>
         </div>
