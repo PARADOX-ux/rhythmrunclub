@@ -430,7 +430,7 @@ export default function AnimatedLogin() {
                 </svg>
             ),
             className: "size-14",
-            duration: 20,
+            duration: 12,
             delay: 0,
             radius: 110,
             path: true
@@ -443,7 +443,7 @@ export default function AnimatedLogin() {
                 </svg>
             ),
             className: "size-14",
-            duration: 25,
+            duration: 15,
             delay: 10,
             radius: 170,
             path: true,
@@ -457,7 +457,7 @@ export default function AnimatedLogin() {
                 </svg>
             ),
             className: "size-14",
-            duration: 25,
+            duration: 15,
             delay: 20,
             radius: 170,
             path: false,
@@ -472,7 +472,7 @@ export default function AnimatedLogin() {
                 </svg>
             ),
             className: "size-14",
-            duration: 35,
+            duration: 20,
             delay: 5,
             radius: 240,
             path: true
