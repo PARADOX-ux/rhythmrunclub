@@ -1,9 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 export default function CustomCursor() {
     const cursorRef = useRef(null);
     const followerRef = useRef(null);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+    useEffect(() => {
+        setIsTouchDevice(window.matchMedia("(pointer: coarse)").matches);
+    }, []);
 
     useEffect(() => {
         // Optimize with quickSetter for performance
@@ -19,6 +24,8 @@ export default function CustomCursor() {
         window.addEventListener('mousemove', moveCursor);
         return () => window.removeEventListener('mousemove', moveCursor);
     }, []);
+
+    if (isTouchDevice) return null;
 
     return (
         <>

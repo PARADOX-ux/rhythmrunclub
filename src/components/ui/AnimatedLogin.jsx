@@ -485,20 +485,24 @@ export default function AnimatedLogin() {
     ];
 
     return (
-        <div className="flex min-h-screen w-full bg-black font-sans overflow-hidden">
+        <div className="flex flex-col lg:flex-row min-h-screen w-full bg-black font-sans overflow-hidden">
 
-            {/* Left Side: Orbit Display (Desktop Only) */}
-            <div className="hidden lg:flex w-1/2 items-center justify-center relative border-r border-white/5">
+            {/* Left Side: Orbit Display */}
+            {/* Mobile: Top 40% height. Desktop: Left 50% width. */}
+            <div className="relative w-full h-[40vh] lg:h-auto lg:w-1/2 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/5 overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-black to-black"></div>
 
                 {/* Grid Pattern */}
                 <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: `radial-gradient(#333 1px, transparent 1px)`, backgroundSize: '32px 32px' }}></div>
 
-                <TechOrbitDisplay iconsArray={iconsArray} text="RHYTHM" />
+                {/* Scale down orbits on mobile to fit */}
+                <div className="scale-[0.6] lg:scale-100 transform-gpu">
+                    <TechOrbitDisplay iconsArray={iconsArray} text="RHYTHM" />
+                </div>
             </div>
 
             {/* Right Side: Auth Form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 relative">
+            <div className="w-full flex-1 lg:w-1/2 flex items-center justify-center p-6 relative bg-black/50 lg:bg-transparent">
                 {/* Mobile Background: simplified */}
                 <div className="absolute inset-0 lg:hidden opacity-10 pointer-events-none" style={{ backgroundImage: `radial-gradient(#333 1px, transparent 1px)`, backgroundSize: '32px 32px' }}></div>
 
