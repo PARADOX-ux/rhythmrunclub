@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 import { Activity, Zap, Users, Trophy } from 'lucide-react'
 
 const stats = [
-    { label: "Club Members", value: "1,240", icon: Users },
-    { label: "Total Km Run", value: "85k+", icon: Activity },
-    { label: "Avg Pace", value: "6:30", icon: Zap },
-    { label: "PRs This Month", value: "48", icon: Trophy },
+    { label: "WEEKS RUNNING", value: "52", icon: Trophy },
+    { label: "ACTIVE RUNNERS", value: "80+", icon: Users },
+    { label: "KILOMETERS", value: "1000+", icon: Activity },
+    { label: "VIBES", value: "∞", icon: Zap },
 ]
 
 export default function StravaStats() {

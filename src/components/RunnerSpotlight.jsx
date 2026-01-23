@@ -4,22 +4,22 @@ import ElectricBorder from './ui/ElectricBorder';
 
 const runners = [
     {
-        name: "AGENT K.",
+        name: "ARJUN",
         role: "THE PACER",
         distance: "42km",
-        quote: "Target pace acquired. No deviations allowed.",
+        quote: "The only competition is the voice inside your head asking you to quit.",
     },
     {
-        name: "AGENT M.",
-        role: "NIGHT OWL",
+        name: "MEERA",
+        role: "EARLY RISER",
         distance: "21km",
-        quote: "Operations commence at 2400 hours.",
+        quote: "There is nothing like the city at 5 AM. It's just you and the rhythm.",
     },
     {
-        name: "AGENT R.",
+        name: "ROHAN",
         role: "TRAIL BLAZER",
         distance: "10km",
-        quote: "Terrain analysis complete. Route secure.",
+        quote: "Speed is fun, but community is what keeps you going.",
     }
 ];
 
