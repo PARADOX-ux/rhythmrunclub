@@ -435,7 +435,7 @@ export default function AnimatedLogin() {
             className: "size-14",
             duration: 12,
             delay: 0,
-            radius: 110,
+            radius: 190,
             path: true
         },
         // TAILWIND (Teal) - Medium Radius
@@ -448,7 +448,7 @@ export default function AnimatedLogin() {
             className: "size-14",
             duration: 15,
             delay: 10,
-            radius: 170,
+            radius: 260,
             path: true,
             reverse: true
         },
@@ -462,7 +462,7 @@ export default function AnimatedLogin() {
             className: "size-14",
             duration: 15,
             delay: 20,
-            radius: 170,
+            radius: 260,
             path: false,
             reverse: true
         },
@@ -477,7 +477,7 @@ export default function AnimatedLogin() {
             className: "size-14",
             duration: 20,
             delay: 5,
-            radius: 240,
+            radius: 330,
             path: true
         },
     ];
