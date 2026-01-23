@@ -199,7 +199,7 @@ const TechOrbitDisplay = memo(function TechOrbitDisplay({
             <img
                 src={rhythmLogo}
                 alt="RHYTHM"
-                className="relative z-10 w-48 h-48 sm:w-64 sm:h-64 object-contain rounded-full pointer-events-none drop-shadow-[0_0_35px_rgba(252,76,2,0.6)] border border-orange-500/20"
+                className="relative z-10 w-48 h-48 sm:w-56 sm:h-56 object-contain rounded-full pointer-events-none drop-shadow-[0_0_35px_rgba(252,76,2,0.6)] border border-orange-500/20"
             />
 
             {/* Center Glow */}
@@ -435,7 +435,7 @@ export default function AnimatedLogin() {
             className: "size-14",
             duration: 12,
             delay: 0,
-            radius: 190,
+            radius: 160,
             path: true
         },
         // TAILWIND (Teal) - Medium Radius
@@ -448,7 +448,7 @@ export default function AnimatedLogin() {
             className: "size-14",
             duration: 15,
             delay: 10,
-            radius: 260,
+            radius: 230,
             path: true,
             reverse: true
         },
@@ -462,7 +462,7 @@ export default function AnimatedLogin() {
             className: "size-14",
             duration: 15,
             delay: 20,
-            radius: 260,
+            radius: 230,
             path: false,
             reverse: true
         },
@@ -477,7 +477,7 @@ export default function AnimatedLogin() {
             className: "size-14",
             duration: 20,
             delay: 5,
-            radius: 330,
+            radius: 300,
             path: true
         },
     ];
