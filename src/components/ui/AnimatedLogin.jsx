@@ -196,11 +196,13 @@ const TechOrbitDisplay = memo(function TechOrbitDisplay({
 }) {
     return (
         <section className='relative flex h-full w-full flex-col items-center justify-center overflow-hidden'>
-            <img
-                src={rhythmLogo}
-                alt="RHYTHM"
-                className="relative z-10 w-48 h-48 sm:w-56 sm:h-56 object-contain rounded-full pointer-events-none drop-shadow-[0_0_35px_rgba(252,76,2,0.6)] border border-orange-500/20"
-            />
+            <div className="relative z-10 w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border border-orange-500/20 drop-shadow-[0_0_35px_rgba(252,76,2,0.6)]">
+                <img
+                    src={rhythmLogo}
+                    alt="RHYTHM"
+                    className="w-full h-full object-cover scale-150 -translate-y-4 pointer-events-none"
+                />
+            </div>
 
             {/* Center Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-orange-500/10 blur-[100px] rounded-full"></div>
