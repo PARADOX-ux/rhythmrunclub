@@ -199,7 +199,7 @@ const TechOrbitDisplay = memo(function TechOrbitDisplay({
             <img
                 src={rhythmLogo}
                 alt="RHYTHM"
-                className="relative z-10 w-fit h-48 sm:h-64 object-contain pointer-events-none drop-shadow-[0_0_25px_rgba(252,76,2,0.3)] opacity-90 mix-blend-screen"
+                className="relative z-10 w-48 h-48 sm:w-64 sm:h-64 object-contain rounded-full pointer-events-none drop-shadow-[0_0_35px_rgba(252,76,2,0.6)] border border-orange-500/20"
             />
 
             {/* Center Glow */}
