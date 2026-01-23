@@ -77,7 +77,7 @@ export default function Events() {
                                 <div className="flex justify-between items-start mb-8">
                                     <div>
                                         <h2 className="text-4xl md:text-5xl font-black text-orange-500 mb-2 tracking-tighter">SUNDAY RUN</h2>
-                                        <p className="text-xl text-white font-bold">18th January 2026 • 7:00 AM • GKVK Entrance</p>
+                                        <p className="text-xl text-white font-bold">25th January 2026 • 7:00 AM • GKVK Entrance</p>
                                     </div>
                                 </div>
 
@@ -149,7 +149,7 @@ export default function Events() {
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>
                                                 <p className="text-xs text-gray-500 uppercase">Date</p>
-                                                <p className="font-bold">18 JAN 2026</p>
+                                                <p className="font-bold">25 JAN 2026</p>
                                             </div>
                                             <div>
                                                 <p className="text-xs text-gray-500 uppercase">Time</p>

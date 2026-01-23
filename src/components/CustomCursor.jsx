@@ -6,9 +6,15 @@ export default function CustomCursor() {
     const followerRef = useRef(null);
 
     useEffect(() => {
+        // Optimize with quickSetter for performance
+        const setCursorX = gsap.quickSetter(cursorRef.current, "x", "px");
+        const setCursorY = gsap.quickSetter(cursorRef.current, "y", "px");
+
         const moveCursor = (e) => {
-            gsap.to(cursorRef.current, { x: e.clientX, y: e.clientY, duration: 0 });
-            gsap.to(followerRef.current, { x: e.clientX, y: e.clientY, duration: 0.6, ease: "power3.out" });
+            setCursorX(e.clientX);
+            setCursorY(e.clientY);
+            // Keep the follower smooth
+            gsap.to(followerRef.current, { x: e.clientX, y: e.clientY, duration: 0.6, ease: "power3.out", overwrite: "auto" });
         };
         window.addEventListener('mousemove', moveCursor);
         return () => window.removeEventListener('mousemove', moveCursor);

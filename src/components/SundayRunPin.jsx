@@ -53,7 +53,7 @@ export default function SundayRunPin() {
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] border-2 border-dashed border-white/20 rounded-full animate-spin-slow"></div>
 
                             <div className="absolute inset-0 flex items-center justify-center flex-col">
-                                <span className="text-6xl font-black text-white mix-blend-overlay">18</span>
+                                <span className="text-6xl font-black text-white mix-blend-overlay">25</span>
                                 <span className="text-sm font-bold text-orange-500 tracking-widest bg-black/50 px-2 rounded">JAN</span>
                             </div>
                         </div>

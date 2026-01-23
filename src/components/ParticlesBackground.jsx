@@ -47,7 +47,7 @@ const ParticlesBackground = () => {
 
         const init = () => {
             particles = [];
-            for (let i = 0; i < 150; i++) { // More particles
+            for (let i = 0; i < 60; i++) { // Optimized particle count
                 particles.push(new Particle());
             }
         };
