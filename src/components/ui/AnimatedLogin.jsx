@@ -200,7 +200,7 @@ const TechOrbitDisplay = memo(function TechOrbitDisplay({
                 <img
                     src={rhythmLogo}
                     alt="RHYTHM"
-                    className="w-full h-full object-cover scale-150 -translate-y-4 pointer-events-none"
+                    className="w-full h-full object-cover object-[center_35%] scale-110 pointer-events-none"
                 />
             </div>
 
