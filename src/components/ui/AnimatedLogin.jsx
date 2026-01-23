@@ -485,11 +485,11 @@ export default function AnimatedLogin() {
     ];
 
     return (
-        <div className="flex flex-col lg:flex-row min-h-screen w-full bg-black font-sans overflow-hidden">
+        <div className="flex flex-col lg:flex-row min-h-screen w-full bg-black font-sans overflow-x-hidden overflow-y-auto lg:overflow-hidden">
 
             {/* Left Side: Orbit Display */}
-            {/* Mobile: Top 40% height. Desktop: Left 50% width. */}
-            <div className="relative w-full h-[40vh] lg:h-auto lg:w-1/2 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/5 overflow-hidden">
+            {/* Mobile: Top section with min-height to prevent overlap. Desktop: Left 50% width. */}
+            <div className="relative w-full h-[40vh] min-h-[380px] lg:h-auto lg:w-1/2 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/5 overflow-hidden shrink-0">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-black to-black"></div>
 
                 {/* Grid Pattern */}
