@@ -18,6 +18,7 @@ import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
 import { signInWithGoogle, auth } from '../../firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import rhythmLogo from '../../assets/rhythm_logo.png';
 
 // ==================== Input Component ====================
 
@@ -195,9 +196,11 @@ const TechOrbitDisplay = memo(function TechOrbitDisplay({
 }) {
     return (
         <section className='relative flex h-full w-full flex-col items-center justify-center overflow-hidden'>
-            <span className='pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-white to-gray-500 bg-clip-text text-center text-8xl font-black leading-none text-transparent tracking-tighter opacity-100 mix-blend-difference z-10'>
-                {text}
-            </span>
+            <img
+                src={rhythmLogo}
+                alt="RHYTHM"
+                className="relative z-10 w-fit h-48 sm:h-64 object-contain pointer-events-none drop-shadow-[0_0_25px_rgba(252,76,2,0.3)] opacity-90 mix-blend-screen"
+            />
 
             {/* Center Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-orange-500/10 blur-[100px] rounded-full"></div>
